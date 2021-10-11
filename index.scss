@@ -58,38 +58,21 @@ body {
   .header {
     .top {
       height: 25vw;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      background: linear-gradient(to bottom, rgb(52, 112, 190), transparent),
-        url(img/header__top.jpg) no-repeat;
-      background-size: cover;
-      background-position: top;
 
       .left {
         img {
           height: 15vw;
           width: 15vw;
-          border-radius: 50%;
         }
       }
 
       .center {
         .title {
-          color: #ffffff;
           font-size: 4.5vw;
-          font-weight: bold;
-          text-shadow: 2px 2px #111111;
-          text-align: center;
-          // padding: 10px;
         }
 
         .add {
-          color: gold;
           font-size: 2vw;
-          font-weight: bold;
-          font-style: italic;
-          text-align: center;
           margin-bottom: 5px;
         }
       }
@@ -98,7 +81,6 @@ body {
         img {
           height: 15vw;
           width: 15vw;
-          border-radius: 50%;
         }
       }
     }
@@ -186,7 +168,7 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  // background: $nav-background;
+  background: $nav-background;
   height: $nav-height;
   width: $nav-height;
 }
@@ -195,8 +177,6 @@ nav {
 
   .navigation {
     background-color: #363232f1;
-
-    // z-index: -10;
   }
 
   .nav-mobile {
@@ -288,7 +268,7 @@ nav {
   float: left;
   line-height: $nav-height;
   text-transform: uppercase;
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: bold;
   a,
   a:visited {
