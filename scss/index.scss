@@ -1,0 +1,482 @@
+body {
+  font-size: 1em;
+}
+
+.header {
+  .top {
+    height: 12vw;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background-size: cover;
+    background-position: top;
+
+    .left {
+      img {
+        height: 10vw;
+        width: 10vw;
+        border-radius: 50%;
+      }
+    }
+
+    .center {
+      .title {
+        // color: rgb(255, 187, 0);
+        color: #ffffff;
+        font-size: 3vw;
+        font-weight: bold;
+        // font-style: italic;
+        text-shadow: 2px 2px #111111;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .add {
+        color: gold;
+        font-size: 1.5vw;
+        font-weight: bold;
+        font-style: italic;
+        text-align: center;
+        padding: 2px;
+      }
+    }
+
+    .right {
+      img {
+        height: 10vw;
+        width: 10vw;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .header {
+    .top {
+      height: 25vw;
+
+      .left {
+        img {
+          height: 15vw;
+          width: 15vw;
+        }
+      }
+
+      .center {
+        .title {
+          font-size: 4.5vw;
+        }
+
+        .add {
+          font-size: 2vw;
+          margin-bottom: 5px;
+        }
+      }
+
+      .right {
+        img {
+          height: 15vw;
+          width: 15vw;
+        }
+      }
+    }
+  }
+}
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+// Navigation Variables
+$content-width: 1000px;
+$breakpoint: 1000px;
+$nav-height: 40px;
+$nav-background: rgb(255, 253, 253);
+$nav-font-color: #ffffff;
+$link-hover-color: #2581dc;
+
+// Outer navigation wrapper
+.navigation {
+  height: $nav-height;
+  background: $nav-background;
+  z-index: 10;
+  position: sticky;
+  font-size: 0.8em;
+}
+
+// Container with no padding for navbar
+.nav-container {
+  max-width: $content-width;
+  font-size: 1.1em;
+}
+
+// Navigation
+nav {
+  float: right;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      float: left;
+      position: relative;
+      a,
+      a:visited {
+        display: block;
+        padding: 0 15px;
+        line-height: $nav-height;
+        background: $nav-background;
+        color: rgb(255, 136, 0);
+        text-decoration: none;
+        &:hover {
+          background: $link-hover-color;
+          color: $nav-font-color;
+          text-decoration: none;
+          transition: background 1s;
+        }
+        &:not(:only-child):after {
+          padding-left: 2px;
+          content: " ▾";
+        }
+      } // Dropdown list
+      ul li {
+        min-width: 190px;
+        a {
+          padding: 15px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}
+
+// Dropdown list binds to JS toggle event
+.nav-dropdown {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile navigation */
+
+// Binds to JS Toggle
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $nav-background;
+  height: $nav-height;
+  width: $nav-height;
+}
+@media only screen and (max-width: 1000px) {
+  // Hamburger nav visible on mobile only
+
+  .navigation {
+    background-color: #363232f1;
+  }
+
+  .nav-mobile {
+    display: block;
+
+    background-color: #363232f1;
+  }
+  nav {
+    padding: $nav-height 0 15px;
+    background: none;
+    ul {
+      display: none;
+      width: 100vw;
+      li {
+        width: 100vw;
+        text-align: center;
+        float: none;
+        a {
+          padding: 15px;
+          line-height: 20px;
+        }
+        ul li a {
+          padding-left: 30px;
+        }
+      }
+    }
+  }
+  .nav-dropdown {
+    position: static;
+  }
+}
+@media screen and (min-width: $breakpoint) {
+  .nav-list {
+    display: block !important;
+  }
+
+  // #######
+}
+#nav-toggle {
+  font-size: 10px;
+  position: absolute;
+  // left: 15px;
+  top: 10px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+  span,
+  span:before,
+  span:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 5px;
+    width: 35px;
+    background: $nav-font-color;
+    position: absolute;
+    display: block;
+    content: "";
+    transition: all 300ms ease-in-out;
+  }
+  span:before {
+    top: -10px;
+  }
+  span:after {
+    bottom: -10px;
+  }
+  &.active span {
+    background-color: transparent;
+    &:before,
+    &:after {
+      top: 0;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .brand {
+    display: none;
+  }
+}
+
+.brand {
+  position: absolute;
+  padding-left: 15px;
+  float: left;
+  line-height: $nav-height;
+  text-transform: uppercase;
+  font-size: 2.5vw;
+  font-weight: bold;
+  a,
+  a:visited {
+    color: $nav-font-color;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: rgb(255, 145, 0);
+  }
+}
+
+// #########################################################
+@media screen and (min-width: 100px) {
+  .slider {
+    width: 100%;
+    height: 100vh;
+    // position: relative;
+
+    header .item {
+      height: 100vh;
+      position: relative;
+    }
+    header .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    header .item .cover {
+      padding: 5vw 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+    }
+    header .item .cover .header-content {
+      position: relative;
+      padding: 56px;
+      overflow: hidden;
+      z-index: 0;
+    }
+    header .item .cover .header-content .line {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      position: absolute;
+      border: 9px solid #fff;
+      -webkit-clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+      clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+    }
+    header .item .cover .header-content h2 {
+      font-weight: 300;
+      font-size: 35px;
+      color: #fff;
+    }
+    header .item .cover .header-content h1 {
+      font-size: 56px;
+      font-weight: 600;
+      margin: 5px 0 20px;
+      word-spacing: 3px;
+      color: #fff;
+    }
+    header .item .cover .header-content h4 {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 36px;
+      color: #fff;
+    }
+
+    @media screen and (max-width: 1000px) {
+      header .item .cover .header-content {
+        position: relative;
+        padding: 30px;
+        overflow: hidden;
+        z-index: 0;
+      }
+      header .item .cover .header-content .line {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        border: 8px solid #fff;
+        -webkit-clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+        clip-path: polygon(0 0, 60% 0, 36% 100%, 0 100%);
+      }
+      header .item .cover .header-content h2 {
+        font-weight: 300;
+        font-size: 20px;
+        color: #fff;
+      }
+      header .item .cover .header-content h1 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 5px 0 10px;
+        word-spacing: 3px;
+        color: #fff;
+      }
+      header .item .cover .header-content h4 {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 36px;
+        color: #fff;
+      }
+    }
+
+    header .owl-item.active h1 {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      animation-name: fadeInDown;
+      animation-delay: 0.3s;
+    }
+    header .owl-item.active h2 {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      animation-name: fadeInDown;
+      animation-delay: 0.3s;
+    }
+    header .owl-item.active h4 {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      animation-name: fadeInUp;
+      animation-delay: 0.3s;
+    }
+    header .owl-item.active .line {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      animation-name: fadeInLeft;
+      animation-delay: 0.3s;
+    }
+    header .owl-nav .owl-prev {
+      position: absolute;
+      left: 15px;
+      top: 43%;
+      opacity: 0;
+      -webkit-transition: all 0.4s ease-out;
+      transition: all 0.4s ease-out;
+      background: rgba(0, 0, 0, 0.5) !important;
+      width: 40px;
+      cursor: pointer;
+      height: 40px;
+      position: absolute;
+      display: block;
+      z-index: 1000;
+      border-radius: 0;
+    }
+    header .owl-nav .owl-prev span {
+      font-size: 1.6875rem;
+      color: #fff;
+    }
+    header .owl-nav .owl-prev:focus {
+      outline: 0;
+    }
+    header .owl-nav .owl-prev:hover {
+      background: #000 !important;
+    }
+    header .owl-nav .owl-next {
+      position: absolute;
+      right: 15px;
+      top: 43%;
+      opacity: 0;
+      -webkit-transition: all 0.4s ease-out;
+      transition: all 0.4s ease-out;
+      background: rgba(0, 0, 0, 0.5) !important;
+      width: 40px;
+      cursor: pointer;
+      height: 40px;
+      position: absolute;
+      display: block;
+      z-index: 1000;
+      border-radius: 0;
+    }
+    header .owl-nav .owl-next span {
+      font-size: 1.6875rem;
+      color: #fff;
+    }
+    header .owl-nav .owl-next:focus {
+      outline: 0;
+    }
+    header .owl-nav .owl-next:hover {
+      background: #000 !important;
+    }
+    header:hover .owl-prev {
+      left: 0px;
+      opacity: 1;
+    }
+    header:hover .owl-next {
+      right: 0px;
+      opacity: 1;
+    }
+  }
+}
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
